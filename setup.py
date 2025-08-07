@@ -50,7 +50,7 @@ setup(name='up_lpg',
       packages=["up_lpg"],
       package_data={"up_lpg": [executable]} if executable != "unsupported" else None,
       distclass=BinaryDistribution if executable != "unsupported" else Distribution,
-      include_package_data=True,
+      include_package_data=True if executable != "unsupported" else False,
       data_files=[('platlib', [f'up_lpg/{executable}'])] if executable != "unsupported" else None,
       cmdclass={'bdist_wheel': bdist_wheel} if executable != "unsupported" else {'build' : build},
       license='APACHE')
