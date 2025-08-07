@@ -15,7 +15,10 @@ EXECUTABLES = {
     ("Windows", "AMD64"): "winlpg.exe",
 }
 
-executable = EXECUTABLES[arch]
+try:
+    executable = EXECUTABLES[arch]
+except :
+    executable = "unsupported"
 
 try:
     from wheel.bdist_wheel import bdist_wheel as _bdist_wheel
