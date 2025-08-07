@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import platform
-from setuptools import setup, find_packages , Distribution, Extension
+from setuptools import setup, find_packages , Distribution, Extension 
+from setuptools.command.build import build
 
 long_description=\
 """============================================================
@@ -51,5 +52,5 @@ setup(name='up_lpg',
       distclass=BinaryDistribution if executable != "unsupported" else Distribution,
       include_package_data=True,
       data_files=[('platlib', [f'up_lpg/{executable}'])] if executable != "unsupported" else None,
-      cmdclass={'bdist_wheel': bdist_wheel},
+      cmdclass={'bdist_wheel': bdist_wheel} if executable != "unsupported" else {'build' : build},
       license='APACHE')
